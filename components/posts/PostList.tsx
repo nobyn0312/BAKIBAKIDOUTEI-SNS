@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { User, Heart, MessageCircle, Trash2 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
@@ -25,9 +25,13 @@ export default function PostList() {
 
 	// 投稿リストを更新する関数をグローバルに公開
 	useEffect(() => {
-		(window as any).refreshPosts = fetchPosts;
+		if (typeof window !== 'undefined') {
+			(window as { refreshPosts?: () => void }).refreshPosts = fetchPosts;
+		}
 		return () => {
-			delete (window as any).refreshPosts;
+			if (typeof window !== 'undefined') {
+				delete (window as { refreshPosts?: () => void }).refreshPosts;
+			}
 		};
 	}, []);
 

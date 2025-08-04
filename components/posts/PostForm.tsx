@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { User, Image, X } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { uploadImage } from "@/lib/storage";
@@ -65,7 +65,7 @@ export default function PostForm() {
 			}
 
 			// Supabaseに投稿を保存
-			const { data, error } = await supabase
+			const { error } = await supabase
 				.from("posts")
 				.insert([
 					{
@@ -86,8 +86,11 @@ export default function PostForm() {
 				// 投稿成功メッセージ
 				alert("投稿が完了しました！");
 				// 投稿リストを更新
-				if ((window as any).refreshPosts) {
-					(window as any).refreshPosts();
+				if (
+					typeof window !== "undefined" &&
+					(window as { refreshPosts?: () => void }).refreshPosts
+				) {
+					(window as { refreshPosts?: () => void }).refreshPosts?.();
 				} else {
 					// フォールバック: ページをリロード
 					window.location.reload();

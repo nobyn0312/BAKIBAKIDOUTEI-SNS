@@ -21,7 +21,7 @@ export default function UserRegistration() {
 		setIsSubmitting(true);
 
 		try {
-			const { data, error } = await supabase
+			const { error } = await supabase
 				.from("users")
 				.insert([
 					{

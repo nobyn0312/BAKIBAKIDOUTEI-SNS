@@ -9,7 +9,7 @@ export const uploadImage = async (file: File): Promise<string | null> => {
 			.substring(2)}.${fileExt}`;
 
 		// Supabase Storageにアップロード
-		const { data, error } = await supabase.storage
+		const { error } = await supabase.storage
 			.from("post-images")
 			.upload(fileName, file);
 

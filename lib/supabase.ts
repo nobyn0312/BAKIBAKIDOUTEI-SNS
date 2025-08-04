@@ -1,27 +1,27 @@
-import { createClient } from "@supabase/supabase-js";
+import { createBrowserClient } from "@supabase/ssr";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables')
+	throw new Error("Missing Supabase environment variables");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createBrowserClient(supabaseUrl, supabaseAnonKey);
 
 // 型定義
 export interface User {
-  id: string
-  username: string
-  bio: string | null
-  avatar_url: string | null
-  created_at: string
+	id: string;
+	username: string;
+	bio: string | null;
+	avatar_url: string | null;
+	created_at: string;
 }
 
 export interface Post {
-  id: number
-  user_id: string
-  content: string
-  image_url: string | null
-  created_at: string
+	id: number;
+	user_id: string;
+	content: string;
+	image_url: string | null;
+	created_at: string;
 }

@@ -17,7 +17,7 @@ export default function AuthForm() {
 			const testEmail = `test${Date.now()}@example.com`;
 			const testPassword = "testpassword123";
 
-			const { data, error } = await supabase.auth.signUp({
+			const { error } = await supabase.auth.signUp({
 				email: testEmail,
 				password: testPassword,
 				options: {
@@ -52,7 +52,7 @@ export default function AuthForm() {
 			const testEmail = "test@example.com";
 			const testPassword = "testpassword123";
 
-			const { data, error } = await supabase.auth.signInWithPassword({
+			const { error } = await supabase.auth.signInWithPassword({
 				email: testEmail,
 				password: testPassword,
 			});
@@ -60,7 +60,7 @@ export default function AuthForm() {
 			if (error) {
 				// アカウントが存在しない場合は作成
 				if (error.message.includes("Invalid login credentials")) {
-					const { data: signUpData, error: signUpError } =
+					const { error: signUpError } =
 						await supabase.auth.signUp({
 							email: testEmail,
 							password: testPassword,
@@ -140,7 +140,9 @@ export default function AuthForm() {
 					supabaseClient={supabase}
 					appearance={{ theme: ThemeSupa }}
 					providers={["google", "github"]}
-					redirectTo={`${window.location.origin}/auth/callback`}
+					redirectTo={`${
+						typeof window !== "undefined" ? window.location.origin : ""
+					}/auth/callback`}
 				/>
 			</div>
 		</div>

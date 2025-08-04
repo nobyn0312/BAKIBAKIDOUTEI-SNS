@@ -2,6 +2,7 @@
 
 import { Home, Search, Bell, User } from "lucide-react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function Navbar() {
 	const pathname = usePathname();
@@ -13,7 +14,7 @@ export default function Navbar() {
 	return (
 		<nav className='fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden'>
 			<div className='flex justify-around items-center h-16'>
-				<a
+				<Link
 					href='/'
 					className={`flex flex-col items-center justify-center w-full h-full transition-colors ${
 						isActive("/")
@@ -23,8 +24,8 @@ export default function Navbar() {
 				>
 					<Home className='h-6 w-6 mb-1' />
 					<span className='text-xs'>ホーム</span>
-				</a>
-				<a
+				</Link>
+				<Link
 					href='/search'
 					className={`flex flex-col items-center justify-center w-full h-full transition-colors ${
 						isActive("/search")
@@ -34,8 +35,8 @@ export default function Navbar() {
 				>
 					<Search className='h-6 w-6 mb-1' />
 					<span className='text-xs'>検索</span>
-				</a>
-				<a
+				</Link>
+				<Link
 					href='/notifications'
 					className={`flex flex-col items-center justify-center w-full h-full transition-colors ${
 						isActive("/notifications")
@@ -45,8 +46,8 @@ export default function Navbar() {
 				>
 					<Bell className='h-6 w-6 mb-1' />
 					<span className='text-xs'>通知</span>
-				</a>
-				<a
+				</Link>
+				<Link
 					href='/profile'
 					className={`flex flex-col items-center justify-center w-full h-full transition-colors ${
 						isActive("/profile")
@@ -56,7 +57,7 @@ export default function Navbar() {
 				>
 					<User className='h-6 w-6 mb-1' />
 					<span className='text-xs'>プロフィール</span>
-				</a>
+				</Link>
 			</div>
 		</nav>
 	);

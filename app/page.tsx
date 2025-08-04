@@ -5,7 +5,6 @@ import Navbar from "@/components/layout/Navbar";
 import PostForm from "@/components/posts/PostForm";
 import PostList from "@/components/posts/PostList";
 import UserRegistration from "@/components/auth/UserRegistration";
-import SupabaseTest from "@/components/debug/SupabaseTest";
 import { supabase } from "@/lib/supabase";
 
 export default function Home() {

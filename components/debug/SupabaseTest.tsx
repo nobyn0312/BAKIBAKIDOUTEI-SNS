@@ -38,7 +38,7 @@ export default function SupabaseTest() {
 			// 2. 基本的な接続テスト
 			result += "=== 接続テスト ===\n";
 
-			const { data, error } = await supabase
+			const { error } = await supabase
 				.from("users")
 				.select("count")
 				.limit(1);
